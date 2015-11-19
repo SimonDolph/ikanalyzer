@@ -42,8 +42,8 @@ public class DefaultConfig implements Configuration {
     /*
      * 分词器默认字典路径
      */
-    private static final String PATH_DIC_MAIN = "org/wltea/analyzer/dic/main2012.dic";
-    private static final String PATH_DIC_QUANTIFIER = "org/wltea/analyzer/dic/quantifier.dic";
+    private static final String PATH_DIC_MAIN = "main2012.dic";
+    private static final String PATH_DIC_QUANTIFIER = "quantifier.dic";
 
     /*
      * 分词器配置文件路径
@@ -93,6 +93,7 @@ public class DefaultConfig implements Configuration {
      * 
      * @return useSmart
      */
+    @Override
     public boolean useSmart() {
         return useSmart;
     }
@@ -103,6 +104,7 @@ public class DefaultConfig implements Configuration {
      * 
      * @param useSmart
      */
+    @Override
     public void setUseSmart(boolean useSmart) {
         this.useSmart = useSmart;
     }
@@ -112,6 +114,7 @@ public class DefaultConfig implements Configuration {
      * 
      * @return String 主词典路径
      */
+    @Override
     public String getMainDictionary() {
         return PATH_DIC_MAIN;
     }
@@ -121,6 +124,7 @@ public class DefaultConfig implements Configuration {
      * 
      * @return String 量词词典路径
      */
+    @Override
     public String getQuantifierDicionary() {
         return PATH_DIC_QUANTIFIER;
     }
@@ -130,6 +134,7 @@ public class DefaultConfig implements Configuration {
      * 
      * @return List<String> 相对类加载器的路径
      */
+    @Override
     public List<String> getExtDictionarys() {
         List<String> extDictFiles = new ArrayList<String>(2);
         String extDictCfg = props.getProperty(EXT_DICT);
@@ -152,6 +157,7 @@ public class DefaultConfig implements Configuration {
      * 
      * @return List<String> 相对类加载器的路径
      */
+    @Override
     public List<String> getExtStopWordDictionarys() {
         List<String> extStopWordDictFiles = new ArrayList<String>(2);
         String extStopWordDictCfg = props.getProperty(EXT_STOP);
