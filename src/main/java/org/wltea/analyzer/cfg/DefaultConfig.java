@@ -60,13 +60,15 @@ public class DefaultConfig implements Configuration {
      */
     private boolean useSmart;
 
+    private static final DefaultConfig singleton = new DefaultConfig();
+
     /**
      * 返回单例
      * 
      * @return Configuration单例
      */
     public static Configuration getInstance() {
-        return new DefaultConfig();
+        return singleton;
     }
 
     /*
