@@ -317,12 +317,14 @@ class AnalyzeContext {
      * 
      * @return
      */
-    Lexeme getNextLexeme() {
+    Lexeme getNextLexeme(boolean useSmart) {
         // 从结果集取出，并移除第一个Lexme
         Lexeme result = this.results.pollFirst();
         while (result != null) {
             // 数量词合并
-            this.compound(result);
+            if (useSmart) {
+                this.compound(result);
+            }
             if (Dictionary.getSingleton().isStopWord(this.segmentBuff, result.getBegin(), result.getLength())) {
                 // 是停止词继续取列表的下一个
                 result = this.results.pollFirst();
@@ -354,9 +356,6 @@ class AnalyzeContext {
      * 组合词元
      */
     private void compound(Lexeme result) {
-        if (!this.cfg.useSmart()) {
-            return;
-        }
         // 数量词合并处理
         if (!this.results.isEmpty()) {
 
