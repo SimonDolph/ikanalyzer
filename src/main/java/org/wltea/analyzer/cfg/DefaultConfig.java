@@ -55,10 +55,6 @@ public class DefaultConfig implements Configuration {
     private static final String EXT_STOP = "ext_stopwords";
 
     private Properties props;
-    /*
-     * 是否使用smart方式分词
-     */
-    private boolean useSmart;
 
     private static final DefaultConfig singleton = new DefaultConfig();
 
@@ -81,34 +77,10 @@ public class DefaultConfig implements Configuration {
         if (input != null) {
             try {
                 props.loadFromXML(input);
-            } catch (InvalidPropertiesFormatException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-    }
-
-    /**
-     * 返回useSmart标志位
-     * useSmart =true ，分词器使用智能切分策略， =false则使用细粒度切分
-     * 
-     * @return useSmart
-     */
-    @Override
-    public boolean useSmart() {
-        return useSmart;
-    }
-
-    /**
-     * 设置useSmart标志位
-     * useSmart =true ，分词器使用智能切分策略， =false则使用细粒度切分
-     * 
-     * @param useSmart
-     */
-    @Override
-    public void setUseSmart(boolean useSmart) {
-        this.useSmart = useSmart;
     }
 
     /**
@@ -143,7 +115,7 @@ public class DefaultConfig implements Configuration {
         if (extDictCfg != null) {
             // 使用;分割多个扩展字典配置
             String[] filePaths = extDictCfg.split(";");
-            if (filePaths != null) {
+            if (filePaths.length > 0) {
                 for (String filePath : filePaths) {
                     if (filePath != null && !"".equals(filePath.trim())) {
                         extDictFiles.add(filePath.trim());
@@ -166,7 +138,7 @@ public class DefaultConfig implements Configuration {
         if (extStopWordDictCfg != null) {
             // 使用;分割多个扩展字典配置
             String[] filePaths = extStopWordDictCfg.split(";");
-            if (filePaths != null) {
+            if (filePaths.length > 0) {
                 for (String filePath : filePaths) {
                     if (filePath != null && !"".equals(filePath.trim())) {
                         extStopWordDictFiles.add(filePath.trim());
